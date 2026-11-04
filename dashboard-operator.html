@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff7ed">
+  <title>Tailor Shop — Dashboard Operator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tailor-ui.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="top-icon" href="tampilan.html" aria-label="Kembali ke daftar antrian">‹</a>
+      <span class="top-icon bell" aria-hidden="true">♧</span>
+    </header>
+    <nav class="screen-nav" aria-label="Halaman aplikasi">
+      <a class="screen-link" href="tampilan.html">Antrian</a><a class="screen-link" href="input-pesanan.html">Input pesanan</a><a class="screen-link" href="cek-pesanan.html">Cek pesanan</a><a class="screen-link current" href="dashboard-operator.html">Operator</a><a class="screen-link" href="detail-pesanan.html">Detail</a>
+    </nav>
+    <h1 class="page-title" style="font-family:'Playfair Display',Georgia,serif;font-size:32px">Dashboard Operator</h1>
+    <p class="page-subtitle">Halo, admin. Berikut ringkasan pesanan.</p>
+    <div class="ornament" aria-hidden="true"><span>✂</span></div>
+
+    <section class="metric-grid operator" aria-label="Ringkasan status pesanan">
+      <article class="metric-box primary"><div class="metric-value">2</div><div class="metric-label">Total pesanan</div></article>
+      <article class="metric-box"><div class="metric-value">1</div><div class="metric-label">Menunggu</div></article>
+      <article class="metric-box"><div class="metric-value">0</div><div class="metric-label">Proses</div></article>
+      <article class="metric-box"><div class="metric-value">1</div><div class="metric-label">Selesai</div></article>
+      <article class="metric-box"><div class="metric-value">0</div><div class="metric-label">Diambil</div></article>
+    </section>
+
+    <a class="action-pill" href="tampilan.html">▤ &nbsp; Lihat semua pesanan</a>
+    <h2 class="attention-title">Perlu Perhatian (Deadline terdekat)</h2>
+    <article class="attention-order">
+      <div>
+        <div class="attention-code">JHT-0001</div>
+        <div class="attention-details">Nama: Admin<br>Layanan: Membuat baju<br>Deadline: 9 November 2026</div>
+      </div>
+      <span class="status-pill waiting">Menunggu</span>
+    </article>
+    <p class="footer-note">Tailor Shop Sewing Co. · Panel operator</p>
+  </main>
+</body>
+</html>

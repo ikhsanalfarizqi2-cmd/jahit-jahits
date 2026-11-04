@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff7ed">
+  <title>Tailor Shop — Daftar Antrian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tailor-ui.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --cream: #fff7ed;
+      --paper: #fffcf7;
+      --pink: #e8c2c0;
+      --pink-deep: #c99d9d;
+      --pink-soft: #f5e2df;
+      --ink: #29211f;
+      --muted: #987e78;
+      --line: #e5c9c3;
+      --gold: #c49a42;
+      --green: #70c84c;
+      font-family: "DM Sans", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--cream);
+      background-image: radial-gradient(#ead8ce 0.65px, transparent 0.65px);
+      background-size: 15px 15px;
+    }
+    .page { width: min(100% - 32px, 620px); margin: 0 auto; padding: 22px 0 42px; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; height: 46px; }
+    .top-icon { display: grid; width: 42px; height: 42px; place-items: center; border: 0; background: transparent; color: var(--pink-deep); font-size: 30px; line-height: 1; }
+    .top-icon.bell { font-size: 23px; }
+    .brand { display: grid; justify-items: center; margin: -4px 0 15px; text-align: center; }
+    .logo { display: grid; width: 142px; height: 142px; place-items: center; border: 5px solid #edcfca; border-radius: 50%; background: #e9c4c2; box-shadow: inset 0 0 0 2px var(--gold); }
+    .logo-inner { display: grid; justify-items: center; }
+    .logo-machine { font-size: 42px; line-height: 1; filter: grayscale(1); }
+    .logo-name { margin-top: 2px; font-family: "Dancing Script", cursive; font-size: 31px; font-weight: 700; line-height: 1; }
+    .logo-caption { margin-top: 5px; font-family: "Playfair Display", Georgia, serif; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; }
+    .logo-est { margin-top: 2px; font-size: 7px; letter-spacing: 1px; }
+    h1 { margin: 0; font-family: "Dancing Script", cursive; font-size: clamp(38px, 8vw, 52px); font-weight: 600; text-align: center; }
+    .heading-flourish { display: flex; align-items: center; gap: 12px; margin: 10px auto 22px; color: var(--pink-deep); }
+    .heading-flourish::before, .heading-flourish::after { height: 1px; flex: 1; background: var(--line); content: ""; }
+    .heading-flourish span { font-size: 23px; }
+    .search { display: flex; align-items: center; gap: 13px; height: 58px; padding: 0 20px; border: 2px solid #d5b5b0; border-radius: 999px; background: rgb(255 252 247 / 86%); color: #b8938e; }
+    .search-icon { font-size: 23px; line-height: 1; }
+    .search-text { color: #b99c94; font-family: "Playfair Display", Georgia, serif; font-size: 15px; }
+    .filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin: 14px 0 24px; }
+    .filter { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 48px; padding: 8px; border-radius: 999px; background: #f6e5c8; color: #b88e8b; font-size: 13px; font-weight: 600; }
+    .filter.active { background: #d3a9a8; color: var(--ink); }
+    .filter-icon { font-size: 18px; }
+    .orders { display: grid; gap: 17px; }
+    .order {
+      position: relative;
+      display: grid;
+      grid-template-columns: 102px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 13px;
+      min-height: 156px;
+      padding: 15px 17px;
+      border: 4px solid var(--pink-deep);
+      border-radius: 31px 25px 34px 26px / 25px 32px 24px 33px;
+      background: rgb(255 252 247 / 92%);
+      box-shadow: 0 3px 0 rgb(201 157 157 / 12%);
+    }
+    .order:nth-child(2) { border-radius: 25px 34px 27px 32px / 33px 25px 34px 27px; }
+    .order:nth-child(3) { border-radius: 34px 26px 32px 25px / 24px 34px 26px 31px; }
+    .garment { width: 96px; height: 96px; overflow: hidden; border: 4px solid #edd0cb; border-radius: 50%; background: #e9c4c2; }
+    .garment img { width: 100%; height: 100%; object-fit: cover; }
+    .order-info { min-width: 0; align-self: center; }
+    .order-number { margin-bottom: 3px; font-size: 14px; font-weight: 700; }
+    .customer { margin-bottom: 8px; color: #b2938d; font-size: 13px; }
+    .service, .deadline { display: flex; align-items: center; gap: 7px; margin-top: 6px; color: #a68a84; font-size: 11px; }
+    .service-icon, .calendar-icon { width: 16px; color: var(--ink); font-size: 15px; text-align: center; }
+    .status { align-self: start; padding: 8px 11px; border-radius: 999px; background: var(--pink-soft); color: #be5d55; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .status.waiting { background: #f7edc9; color: #a88a20; }
+    .status.done { background: var(--green); color: #fffbe8; }
+    .order-arrow { position: absolute; right: 17px; bottom: 17px; color: var(--pink); font-size: 26px; line-height: 1; }
+    .footer { margin-top: 24px; color: #b29890; font-size: 10px; text-align: center; }
+
+    @media (max-width: 520px) {
+      .page { width: min(100% - 24px, 440px); padding-top: 12px; }
+      .logo { width: 126px; height: 126px; }
+      .logo-name { font-size: 28px; }
+      .heading-flourish { margin-bottom: 18px; }
+      .filters { gap: 7px; margin-bottom: 20px; }
+      .filter { min-height: 45px; gap: 5px; font-size: 12px; }
+      .order { grid-template-columns: 78px minmax(0, 1fr) auto; gap: 10px; min-height: 138px; padding: 12px 11px; border-width: 3px; }
+      .garment { width: 74px; height: 74px; border-width: 3px; }
+      .status { padding: 7px 9px; font-size: 10px; }
+      .order-arrow { right: 13px; bottom: 13px; font-size: 22px; }
+      .customer { margin-bottom: 6px; font-size: 12px; }
+      .service, .deadline { font-size: 10px; }
+    }
+    @media (max-width: 370px) {
+      .order { grid-template-columns: 62px minmax(0, 1fr) auto; gap: 8px; padding: 10px 8px; }
+      .garment { width: 60px; height: 60px; }
+      .status { padding: 6px 7px; font-size: 9px; }
+      .filter { font-size: 11px; }
+    }
+    @media (min-width: 900px) {
+      .page { width: min(100% - 80px, 1180px); }
+      .search, .filters { max-width: 760px; margin-right: auto; margin-left: auto; }
+      .orders { width: min(100%, 1000px); grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar" aria-label="Header">
+      <div class="top-icon" aria-hidden="true">‹</div>
+      <div class="top-icon bell" aria-hidden="true">♧</div>
+    </header>
+
+    <nav class="screen-nav" aria-label="Halaman aplikasi">
+      <a class="screen-link current" href="tampilan.html">Antrian</a><a class="screen-link" href="input-pesanan.html">Input pesanan</a><a class="screen-link" href="cek-pesanan.html">Cek pesanan</a><a class="screen-link" href="detail-pesanan.html">Detail</a>
+    </nav>
+
+    <section class="brand" aria-label="Tailor Shop Sewing Company">
+      <div class="logo">
+        <div class="logo-inner">
+          <div class="logo-machine" aria-hidden="true">🧵</div>
+          <div class="logo-name">Tailor Shop</div>
+          <div class="logo-caption">SEWING CO.</div>
+          <div class="logo-est">EST. 2024</div>
+        </div>
+      </div>
+    </section>
+
+    <h1>Daftar Antrian</h1>
+    <div class="heading-flourish" aria-hidden="true"><span>♡</span></div>
+
+    <div class="search" aria-label="Kolom pencarian dekoratif">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <span class="search-text">Cari nama / no. pesanan</span>
+    </div>
+
+    <div class="filters" aria-label="Filter status dekoratif">
+      <div class="filter active"><span class="filter-icon" aria-hidden="true">◷</span>Semua</div>
+      <div class="filter"><span class="filter-icon" aria-hidden="true">⌛</span>Proses</div>
+      <div class="filter"><span class="filter-icon" aria-hidden="true">✓</span>Selesai</div>
+    </div>
+
+    <section class="orders" aria-label="Daftar pesanan contoh">
+      <article class="order">
+        <div class="garment"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&amp;fit=crop&amp;w=240&amp;h=240&amp;q=80" alt="Gaun warna merah muda"></div>
+        <div class="order-info">
+          <div class="order-number">#001</div>
+          <div class="customer">Susan Putri</div>
+          <div class="service"><span class="service-icon" aria-hidden="true">♧</span>Buat gaun</div>
+          <div class="deadline"><span class="calendar-icon" aria-hidden="true">▦</span>18 Nov 2026</div>
+        </div>
+        <div class="status">Proses</div>
+        <div class="order-arrow" aria-hidden="true">›</div>
+      </article>
+
+      <article class="order">
+        <div class="garment"><img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&amp;fit=crop&amp;w=240&amp;h=240&amp;q=80" alt="Celana kain"></div>
+        <div class="order-info">
+          <div class="order-number">#002</div>
+          <div class="customer">Ryuga Ikhsan</div>
+          <div class="service"><span class="service-icon" aria-hidden="true">♧</span>Jahit celana</div>
+          <div class="deadline"><span class="calendar-icon" aria-hidden="true">▦</span>14 Nov 2026</div>
+        </div>
+        <div class="status waiting">Menunggu</div>
+        <div class="order-arrow" aria-hidden="true">›</div>
+      </article>
+
+      <article class="order">
+        <div class="garment"><img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&amp;fit=crop&amp;w=240&amp;h=240&amp;q=80" alt="Kemeja putih"></div>
+        <div class="order-info">
+          <div class="order-number">#003</div>
+          <div class="customer">Abiyasa</div>
+          <div class="service"><span class="service-icon" aria-hidden="true">♧</span>Buat kemeja</div>
+          <div class="deadline"><span class="calendar-icon" aria-hidden="true">▦</span>20 Okt 2026</div>
+        </div>
+        <div class="status done">Selesai</div>
+        <div class="order-arrow" aria-hidden="true">›</div>
+      </article>
+    </section>
+
+    <footer class="footer">Tailor Shop Sewing Co. · Daftar pesanan</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff7ed">
+  <title>Tailor Shop — Detail Pesanan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tailor-ui.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="top-icon" href="tampilan.html" aria-label="Kembali ke daftar antrian">‹</a>
+      <span class="top-icon bell" aria-hidden="true">♧</span>
+    </header>
+    <section class="brand" aria-label="Tailor Shop Sewing Company">
+      <div class="logo"><div class="logo-inner"><div class="logo-machine" aria-hidden="true">🧵</div><div class="logo-name">Tailor Shop</div><div class="logo-caption">SEWING CO.</div><div class="logo-est">EST. 2024</div></div></div>
+    </section>
+    <nav class="screen-nav" aria-label="Halaman aplikasi">
+      <a class="screen-link" href="tampilan.html">Antrian</a><a class="screen-link" href="input-pesanan.html">Input pesanan</a><a class="screen-link" href="cek-pesanan.html">Cek pesanan</a><a class="screen-link current" href="detail-pesanan.html">Detail</a>
+    </nav>
+    <h1 class="page-title">Detail Pesanan</h1>
+    <div class="ornament" aria-hidden="true"><span>♡</span></div>
+
+    <div class="detail-layout">
+    <section class="surface summary-card" aria-label="Ringkasan pesanan JHT-0001">
+      <div class="summary-head">
+        <div><div class="summary-id">#001</div><div class="summary-person">Susan Putri</div></div>
+        <span class="status-pill">Proses</span>
+      </div>
+      <div class="summary-content">
+        <div class="summary-photo"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&amp;fit=crop&amp;w=240&amp;h=240&amp;q=80" alt="Gaun pesanan Susan Putri"></div>
+        <div>
+          <div class="service">♧ &nbsp; Jahit gaun</div>
+          <div class="deadline">▦ &nbsp; 18 Nov 2026</div>
+          <div class="deadline">◷ &nbsp; Estimasi selesai: 23 Nov 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="surface" aria-labelledby="info-title">
+      <h2 class="surface-title" id="info-title">▤ &nbsp; Informasi Pesanan</h2>
+      <dl class="detail-rows">
+        <div class="detail-row"><dt>Jenis Pakaian</dt><dd>Jahit gaun</dd></div>
+        <div class="detail-row"><dt>Bahan</dt><dd>Satin premium</dd></div>
+        <div class="detail-row"><dt>Ukuran</dt><dd>M</dd></div>
+        <div class="detail-row"><dt>Catatan Khusus</dt><dd>Tambahkan pita di bagian pinggang, warna sesuai contoh.</dd></div>
+      </dl>
+    </section>
+
+    <section class="surface" aria-labelledby="progress-title">
+      <h2 class="surface-title" id="progress-title">⚙ &nbsp; Progress Pengerjaan</h2>
+      <ol class="timeline">
+        <li class="timeline-item complete"><span class="timeline-mark">✓</span><div><div class="timeline-name">Pesanan Diterima</div><div class="timeline-date">18 Nov 2026, 10:56</div></div></li>
+        <li class="timeline-item current"><span class="timeline-mark"></span><div><div class="timeline-name">Proses Jahit</div><div class="timeline-date">19 Nov 2026, 08:14</div></div></li>
+        <li class="timeline-item"><span class="timeline-mark"></span><div><div class="timeline-name">Selesai</div><div class="timeline-date">Menunggu proses</div></div></li>
+        <li class="timeline-item"><span class="timeline-mark"></span><div><div class="timeline-name">Siap Diambil</div><div class="timeline-date">Menunggu proses</div></div></li>
+      </ol>
+    </section>
+
+    <section class="surface price-card" aria-label="Rincian harga statis">
+      <div class="price-row"><span>Total Harga</span><strong>Rp 120.000</strong></div>
+      <div class="price-row"><span>Uang muka</span><span>Rp 50.000</span></div>
+      <div class="price-row total"><span>Sisa pembayaran</span><span>Rp 70.000</span></div>
+      <a class="action-pill" href="tampilan.html">☏ &nbsp; Hubungi Penjahit</a>
+    </section>
+    </div>
+    <p class="footer-note">Tailor Shop Sewing Co. · Detail pesanan</p>
+  </main>
+</body>
+</html>
